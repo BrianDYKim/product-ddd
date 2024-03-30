@@ -1,7 +1,7 @@
-rootProject.name = "boilerplate"
+rootProject.name = "product-ddd"
 
 pluginManagement {
-    val kotlinVersion = "1.8.22"
+    val kotlinVersion = "1.9.22"
     val springBootVersion = "3.2.0"
     val springDependencyManagementVersion = "1.1.4"
 
@@ -14,7 +14,7 @@ pluginManagement {
         id("org.jetbrains.kotlin.plugin.noarg") version kotlinVersion
         kotlin("jvm") version kotlinVersion
         kotlin("plugin.spring") version kotlinVersion
-        kotlin("plugin.jpa") version kotlinVersion
+        id("org.jetbrains.kotlin.plugin.jpa") version kotlinVersion
 
         kotlin("kapt") version kotlinVersion
 
@@ -23,7 +23,15 @@ pluginManagement {
     }
 }
 
-// modules
-include("common")
-include("core", "core:domain", "core:external")
-include("application", "application:admin-api", "application:api", "application:batch")
+fun File.registerSubDirectoriesAsModule() {
+    this.listFiles()?.forEach { file ->
+        if (file.isDirectory) {
+            include("${this.name}:${file.name}")
+        }
+    }
+}
+
+// 모듈 등록
+listOf("commons", "core")
+    .map { File(it) }
+    .map { it.registerSubDirectoriesAsModule() }

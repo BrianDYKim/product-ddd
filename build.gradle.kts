@@ -9,9 +9,9 @@ plugins {
     id("io.spring.dependency-management")
     id("org.jetbrains.kotlin.plugin.allopen")
     id("org.jetbrains.kotlin.plugin.noarg")
+    id("org.jetbrains.kotlin.plugin.jpa")
     kotlin("jvm")
     kotlin("plugin.spring")
-    kotlin("plugin.jpa")
 
     kotlin("kapt")
 
@@ -33,6 +33,8 @@ allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-spring")
 
+    apply(plugin = "kotlin-kapt")
+
     // KLint
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
@@ -48,10 +50,10 @@ allprojects {
         // Spring
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-validation")
-        implementation("jakarta.validation:jakarta.validation-api")
+        kapt("org.springframework.boot:spring-boot-configuration-processor")
 
-        // Javax annotations
-        implementation("com.google.code.findbugs:jsr305:3.0.2")
+        // Validation
+        implementation("jakarta.validation:jakarta.validation-api")
     }
 
     repositories {
@@ -73,31 +75,20 @@ allprojects {
     }
 }
 
-val nonDependencyProjects = listOf("common")
+val nonDependencyProjects =
+    File("commons").listFiles()!!.filter { it.isDirectory }
+        .map { it.name }
 
 configure(subprojects.filter { it.name !in nonDependencyProjects }) {
-    apply(plugin = "kotlin-jpa")
-
-    apply(plugin = "kotlin-kapt")
-
-    apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
-    apply(plugin = "org.jetbrains.kotlin.plugin.noarg")
-
     dependencies {
         // Spring
         testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-        // JPA
-//        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//        runtimeOnly("com.mysql:mysql-connector-j")
 
         // Test
         testImplementation("io.mockk:mockk:$mockkVersion")
         testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion") // for kotest framework
         testImplementation("io.kotest:kotest-assertions-core:$kotestVersion") // for kotest core jvm assertions
         testImplementation("io.kotest:kotest-property:$kotestVersion") // for kotest property test
-
-        kapt("org.springframework.boot:spring-boot-configuration-processor")
     }
 
     tasks.withType<Test> {
