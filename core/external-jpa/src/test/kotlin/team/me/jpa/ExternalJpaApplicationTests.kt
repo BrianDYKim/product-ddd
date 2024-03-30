@@ -1,10 +1,10 @@
-package team.me.external
+package team.me.jpa
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class ExternalApplicationTests {
+class ExternalJpaApplicationTests {
     @Test
     fun contextLoads() {
     }

@@ -1,11 +1,11 @@
-package team.me.external
+package team.me.jpa
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ExternalApplication
+class ExternalJpaApplication
 
 fun main(args: Array<String>) {
-    runApplication<ExternalApplication>(*args)
+    runApplication<ExternalJpaApplication>(*args)
 }

@@ -32,6 +32,6 @@ fun File.registerSubDirectoriesAsModule() {
 }
 
 // 모듈 등록
-listOf("commons", "core")
+listOf("commons", "core", "application")
     .map { File(it) }
     .map { it.registerSubDirectoriesAsModule() }
