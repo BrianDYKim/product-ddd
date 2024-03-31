@@ -1,8 +1,8 @@
 dependencies {
-    // common module
-    implementation(project(":commons:common-web"))
-
     // application module
+    implementation(project(":application:common-web"))
+
+    // core application module
     implementation(project(":core:application-v1"))
 
     // domain module
