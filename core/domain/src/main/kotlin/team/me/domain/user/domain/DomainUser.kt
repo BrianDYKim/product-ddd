@@ -40,10 +40,18 @@ class DomainUser private constructor(
     data class UserIsValid(val value: Boolean)
 
     enum class UserGrade(val value: String) {
-        BRONZE("bronze"),
-        SILVER("silver"),
-        GOLD("gold"),
-        PLATINUM("platinum"),
-        DIAMOND("diamond"),
+        BRONZE("BRONZE"),
+        SILVER("SILVER"),
+        GOLD("GOLD"),
+        PLATINUM("PLATINUM"),
+        DIAMOND("DIAMOND"),
+        ;
+
+        companion object {
+            fun fromValue(value: String): UserGrade {
+                return entries.find { it.value == value }
+                    ?: throw IllegalArgumentException("Invalid grade value: $value")
+            }
+        }
     }
 }

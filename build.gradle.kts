@@ -50,6 +50,7 @@ allprojects {
         // Spring
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-validation")
+        implementation("org.springframework:spring-tx")
         kapt("org.springframework.boot:spring-boot-configuration-processor")
 
         // Validation

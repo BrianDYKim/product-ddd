@@ -1,6 +1,7 @@
 package team.me.v1App.user.service
 
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.transaction.annotation.Transactional
 import team.me.architect.hexagonal.UseCase
 import team.me.domain.user.domain.DomainUser
 import team.me.domain.user.domain.IUserRepository
@@ -19,6 +20,7 @@ class UserCommandService(
     private val responseMapper: UserResponseMapper,
     private val passwordEncoder: PasswordEncoder,
 ) : UserCommandUseCase {
+    @Transactional
     override fun store(command: RegisterUserCommand): RegisterUserDto.Response {
         val encryptedCommand = this.encryptCommand(command)
 
