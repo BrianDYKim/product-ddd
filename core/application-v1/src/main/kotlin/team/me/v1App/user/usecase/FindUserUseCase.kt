@@ -1,4 +1,4 @@
-package team.me.domain.user.application.usecase
+package team.me.v1App.user.usecase
 
 /**
  * @author Doyeop Kim

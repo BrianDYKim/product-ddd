@@ -1,16 +1,17 @@
-package team.me.domain.user.entity
+package team.me.domain.user.domain
 
 /**
  * @author Doyeop Kim
  * @since 2024/03/30
  */
-class User private constructor(
+class DomainUser private constructor(
     val id: Long,
     val email: String,
     val password: String?,
     val nickname: String,
     val address: String,
     val isValid: Boolean,
+    val grade: UserGrade,
 ) {
     companion object {
         fun generateUser(
@@ -20,8 +21,9 @@ class User private constructor(
             nickname: UserNickname,
             address: UserAddress,
             isValid: UserIsValid,
-        ): User {
-            return User(id.value, email.value, password.value, nickname.value, address.value, isValid.value)
+            grade: UserGrade,
+        ): DomainUser {
+            return DomainUser(id.value, email.value, password.value, nickname.value, address.value, isValid.value, grade)
         }
     }
 
@@ -36,4 +38,12 @@ class User private constructor(
     data class UserAddress(val value: String)
 
     data class UserIsValid(val value: Boolean)
+
+    enum class UserGrade(val value: String) {
+        BRONZE("bronze"),
+        SILVER("silver"),
+        GOLD("gold"),
+        PLATINUM("platinum"),
+        DIAMOND("diamond"),
+    }
 }

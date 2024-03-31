@@ -1,11 +1,11 @@
-package team.me.api
+package team.me.v1App
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-@SpringBootApplication(scanBasePackages = ["team.me.v1App"])
-class ApiApplication
+@SpringBootApplication(scanBasePackages = ["team.me.domain"])
+class V1Application
 
 fun main(args: Array<String>) {
-    runApplication<ApiApplication>(*args)
+    runApplication<V1Application>(*args)
 }

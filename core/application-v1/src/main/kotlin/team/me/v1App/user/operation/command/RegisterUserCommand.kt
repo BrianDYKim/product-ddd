@@ -1,4 +1,4 @@
-package team.me.domain.user.application.operation.command
+package team.me.v1App.user.operation.command
 
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Min

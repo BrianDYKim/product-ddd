@@ -1,7 +1,7 @@
-package team.me.domain.user.application.service
+package team.me.v1App.user.service
 
 import team.me.architect.hexagonal.UseCase
-import team.me.domain.user.application.usecase.FindUserUseCase
+import team.me.v1App.user.usecase.FindUserUseCase
 
 /**
  * @author Doyeop Kim
