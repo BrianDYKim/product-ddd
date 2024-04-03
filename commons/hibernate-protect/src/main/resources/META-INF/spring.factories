@@ -1,2 +1,2 @@
 org.springframework.boot.env.EnvironmentPostProcessor=\
-com.tutoring.hibernate.HibernatePropertiesValidator
+team.me.hibernate.HibernatePropertiesValidator

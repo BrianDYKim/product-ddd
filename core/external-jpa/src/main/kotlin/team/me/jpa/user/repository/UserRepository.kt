@@ -19,6 +19,6 @@ class UserRepository(
 
         val storedUserJpaEntity = userJpaRepository.save(userJpaEntity)
 
-        return userMapper.jpaEntityToDomainEntity(userJpaEntity)
+        return userMapper.jpaEntityToDomainEntity(storedUserJpaEntity)
     }
 }
