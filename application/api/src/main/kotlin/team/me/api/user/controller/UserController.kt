@@ -1,11 +1,13 @@
-package team.me.api.controller
+package team.me.api.user.controller
 
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import team.me.v1App.user.dto.LoginUserDto
 import team.me.v1App.user.dto.RegisterUserDto
 import team.me.v1App.user.operation.command.RegisterUserCommand
+import team.me.v1App.user.operation.query.LoginUserQuery
 import team.me.v1App.user.usecase.UserCommandUseCase
 
 /**
@@ -29,5 +31,16 @@ class UserController(
         val responseBody = userCommandService.store(command)
 
         return responseBody
+    }
+
+    fun login(
+        @RequestBody request: LoginUserDto.Request,
+    ): LoginUserDto.Response {
+        val query =
+            with(request) {
+                LoginUserQuery(email, password)
+            }
+
+        return LoginUserDto.Response("qwe")
     }
 }
