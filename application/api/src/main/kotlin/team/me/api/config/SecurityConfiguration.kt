@@ -1,10 +1,15 @@
 package team.me.api.config
 
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
+import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
 /**
@@ -13,7 +18,10 @@ import org.springframework.security.web.SecurityFilterChain
  */
 @Configuration
 @EnableWebSecurity
-class SecurityConfiguration {
+class SecurityConfiguration(
+    private val passwordEncoder: PasswordEncoder,
+    @Qualifier("userDetailsService") private val userDetailsService: UserDetailsService,
+) {
     @Bean
     fun configure(http: HttpSecurity): SecurityFilterChain {
         http.httpBasic {
@@ -47,5 +55,14 @@ class SecurityConfiguration {
         }
 
         return http.build()
+    }
+
+    @Bean
+    fun authenticationManager(auth: AuthenticationManagerBuilder): AuthenticationManager {
+        auth
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder)
+
+        return auth.build()
     }
 }
