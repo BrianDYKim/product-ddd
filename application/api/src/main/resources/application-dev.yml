@@ -4,8 +4,8 @@ spring:
 
     datasource:
         url: jdbc:mysql://localhost:3306/product?useSSL=false&useUnicode=true&serverTimezone=UTC
-        username: spring
-        password: springTest!
+        username: product
+        password: productTest!
         driver-class-name: com.mysql.cj.jdbc.Driver
 
     jpa:

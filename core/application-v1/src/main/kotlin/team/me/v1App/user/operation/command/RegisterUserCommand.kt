@@ -15,7 +15,7 @@ data class RegisterUserCommand(
     @field:Email
     val email: String,
     @field:NotNull
-    @field:Length(min = 8)
+    @field:Length(min = 5)
     val password: String,
     @field:NotNull
     @field:NotEmpty
