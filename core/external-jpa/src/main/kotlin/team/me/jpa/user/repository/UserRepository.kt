@@ -15,10 +15,16 @@ class UserRepository(
     private val userMapper: UserJpaMapper,
 ) : IUserRepository {
     override fun store(user: DomainUser): DomainUser {
-        val userJpaEntity = userMapper.registerCommandToJpaEntity(user)
+        val userJpaEntity = userMapper.transformDomainToJpaEntity(user)
 
         val storedUserJpaEntity = userJpaRepository.save(userJpaEntity)
 
         return userMapper.jpaEntityToDomainEntity(storedUserJpaEntity)
+    }
+
+    override fun findByEmail(email: String): DomainUser? {
+        val userJpaEntity = userJpaRepository.findByEmail(email)
+
+        return userJpaEntity?.let { userMapper.jpaEntityToDomainEntity(it) }
     }
 }

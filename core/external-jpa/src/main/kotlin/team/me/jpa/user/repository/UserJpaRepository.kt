@@ -11,4 +11,6 @@ import team.me.jpa.user.entity.UserJpaEntity
 @Repository
 interface UserJpaRepository : JpaRepository<UserJpaEntity, Long> {
     fun findByNickname(nickname: String): UserJpaEntity?
+
+    fun findByEmail(email: String): UserJpaEntity?
 }

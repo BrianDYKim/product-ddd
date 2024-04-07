@@ -5,7 +5,7 @@ package team.me.domain.user.domain
  * @since 2024/03/30
  */
 class DomainUser private constructor(
-    val id: Long,
+    val id: Long?,
     val email: String,
     val password: String?,
     val nickname: String,
@@ -27,7 +27,7 @@ class DomainUser private constructor(
         }
     }
 
-    data class UserId(val value: Long)
+    data class UserId(val value: Long?)
 
     data class UserEmail(val value: String)
 

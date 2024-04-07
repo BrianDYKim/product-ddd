@@ -10,9 +10,9 @@ import team.me.jpa.user.entity.UserJpaEntity
  */
 @Component
 class UserJpaMapper {
-    fun registerCommandToJpaEntity(user: DomainUser): UserJpaEntity =
+    fun transformDomainToJpaEntity(user: DomainUser): UserJpaEntity =
         with(user) {
-            UserJpaEntity(0L, email, password!!, nickname, address, isValid, grade.value)
+            UserJpaEntity(id, email, password!!, nickname, address, isValid, grade.value)
         }
 
     fun jpaEntityToDomainEntity(userJpaEntity: UserJpaEntity): DomainUser =

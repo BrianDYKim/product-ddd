@@ -33,6 +33,7 @@ class UserController(
         return responseBody
     }
 
+    @PostMapping("/login")
     fun login(
         @RequestBody request: LoginUserDto.Request,
     ): LoginUserDto.Response {

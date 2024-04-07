@@ -1,4 +1,4 @@
-package team.me.api.user.filter
+package team.me.api.config.security.filter
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.http.HttpServletRequest

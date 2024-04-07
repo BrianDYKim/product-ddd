@@ -22,4 +22,4 @@ spring:
     logging:
         level:
             org.hibernate.SQL: debug
-            org.spring.security: trace
+            org.springframework.security: debug

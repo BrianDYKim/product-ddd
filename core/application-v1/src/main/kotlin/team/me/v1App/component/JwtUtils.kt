@@ -13,7 +13,7 @@ import javax.crypto.spec.SecretKeySpec
  */
 @Component
 class JwtUtils {
-    private var secretString = "secret"
+    private var secretString = "secretsecretsecretsecretsecretsecretsecret"
 
     fun generateToken(userDetails: UserDetails): String {
         val claims: Map<String, Any> = HashMap()

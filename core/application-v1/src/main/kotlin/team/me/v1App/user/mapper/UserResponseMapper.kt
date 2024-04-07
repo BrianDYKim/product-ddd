@@ -12,6 +12,6 @@ import team.me.v1App.user.dto.RegisterUserDto
 class UserResponseMapper {
     fun entityToRegisterResponse(user: DomainUser): RegisterUserDto.Response =
         with(user) {
-            RegisterUserDto.Response(id, email, nickname, address, isValid, grade.value)
+            RegisterUserDto.Response(id!!, email, nickname, address, isValid, grade.value)
         }
 }

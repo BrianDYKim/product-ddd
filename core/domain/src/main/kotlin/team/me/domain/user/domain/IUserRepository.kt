@@ -6,4 +6,6 @@ package team.me.domain.user.domain
  */
 interface IUserRepository {
     fun store(user: DomainUser): DomainUser
+
+    fun findByEmail(email: String): DomainUser?
 }

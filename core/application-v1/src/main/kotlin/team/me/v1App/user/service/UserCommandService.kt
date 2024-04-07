@@ -26,7 +26,7 @@ class UserCommandService(
 
         val user =
             DomainUser.generateUser(
-                id = DomainUser.UserId(0L),
+                id = DomainUser.UserId(null),
                 email = DomainUser.UserEmail(encryptedCommand.email),
                 password = DomainUser.UserPassword(encryptedCommand.password),
                 nickname = DomainUser.UserNickname(encryptedCommand.nickname),
